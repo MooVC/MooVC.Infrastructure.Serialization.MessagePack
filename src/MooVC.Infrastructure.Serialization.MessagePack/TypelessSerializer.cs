@@ -1,5 +1,6 @@
 ﻿namespace MooVC.Infrastructure.Serialization.MessagePack
 {
+    using System;
     using System.IO;
     using System.Threading;
     using System.Threading.Tasks;
@@ -8,8 +9,8 @@
     public sealed class TypelessSerializer
         : Serializer
     {
-        public TypelessSerializer(MessagePackSerializerOptions? options = default)
-            : base(options ?? MessagePackSerializer.Typeless.DefaultOptions)
+        public TypelessSerializer(Func<MessagePackSerializerOptions, MessagePackSerializerOptions>? configure = default)
+            : base(configure, MessagePackSerializer.Typeless.DefaultOptions)
         {
         }
 

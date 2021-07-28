@@ -1,5 +1,6 @@
 ﻿namespace MooVC.Infrastructure.Serialization.MessagePack
 {
+    using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
@@ -13,12 +14,22 @@
     public abstract class Serializer
         : ISerializer
     {
-        protected Serializer(MessagePackSerializerOptions? options)
+        protected Serializer(
+            Func<MessagePackSerializerOptions, MessagePackSerializerOptions>? configure,
+            MessagePackSerializerOptions? options)
         {
-            Options = options ?? MessagePackSerializerOptions.Standard;
+            if (configure is { })
+            {
+                options = configure.Invoke(options ?? Options);
+            }
+
+            if (options is { })
+            {
+                Options = options;
+            }
         }
 
-        public MessagePackSerializerOptions Options { get; }
+        public MessagePackSerializerOptions Options { get; } = MessagePackSerializerOptions.Standard;
 
         public async Task<T> DeserializeAsync<T>(
             IEnumerable<byte> data,

@@ -6,7 +6,7 @@
     public sealed class WhenSerializerIsConstructed
     {
         [Fact]
-        public void GivenNoOptionsThenADefaultSerializerIsCreated()
+        public void GivenNoOptionsConfigurationThenADefaultSerializerIsCreated()
         {
             var serializer = new TypedSerializer();
 
@@ -14,14 +14,14 @@
         }
 
         [Fact]
-        public void GivenOptionsThenASerializerIsCreatedWithTheOptionsApplied()
+        public void GivenOptionsConfigurationThenASerializerIsCreatedWithTheOptionsApplied()
         {
             MessagePackSerializerOptions options = MessagePackSerializerOptions
                 .Standard
                 .WithCompression(MessagePackCompression.Lz4BlockArray)
                 .WithOmitAssemblyVersion(true);
 
-            var serializer = new TypedSerializer(options: options);
+            var serializer = new TypedSerializer(configure: _ => options);
 
             AssertEqual(serializer, options: options);
         }
