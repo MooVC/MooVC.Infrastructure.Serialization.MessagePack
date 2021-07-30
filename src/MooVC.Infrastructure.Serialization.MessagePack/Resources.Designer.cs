@@ -63,9 +63,9 @@ namespace MooVC.Infrastructure.Serialization.MessagePack {
         /// <summary>
         ///   Looks up a localized string similar to The data could not be deserialized to the requested type {0}..
         /// </summary>
-        internal static string SerializerDeserializeFailure {
+        internal static string SerializerPerformDeserializeAsyncFailure {
             get {
-                return ResourceManager.GetString("SerializerDeserializeFailure", resourceCulture);
+                return ResourceManager.GetString("SerializerPerformDeserializeAsyncFailure", resourceCulture);
             }
         }
     }

@@ -5,16 +5,22 @@
     using System.Threading;
     using System.Threading.Tasks;
     using global::MessagePack;
+    using MooVC.Compression;
 
     public sealed class TypelessSerializer
         : Serializer
     {
-        public TypelessSerializer(Func<MessagePackSerializerOptions, MessagePackSerializerOptions>? configure = default)
-            : base(configure, MessagePackSerializer.Typeless.DefaultOptions)
+        public TypelessSerializer(
+            ICompressor? compressor = default,
+            Func<MessagePackSerializerOptions, MessagePackSerializerOptions>? configure = default)
+            : base(
+                  compressor: compressor,
+                  configure: configure,
+                  options: MessagePackSerializer.Typeless.DefaultOptions)
         {
         }
 
-        public override Task SerializeAsync<T>(
+        protected override Task PerformSerializeAsync<T>(
             T instance,
             Stream target,
             CancellationToken? cancellationToken = default)
