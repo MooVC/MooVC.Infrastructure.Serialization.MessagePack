@@ -1,13 +1,8 @@
-﻿namespace MooVC.Infrastructure.Serialization.MessagePack.TypedSerializerTests
-{
-    using System.Collections.Generic;
-    using global::MessagePack;
+﻿namespace MooVC.Infrastructure.Serialization.MessagePack.TypedSerializerTests;
 
-    [MessagePackObject(keyAsPropertyName: true)]
-    public sealed record SerializableRecord(
-        IEnumerable<ulong>? Array,
-        int? Integer,
-        ISerializableInstance? Object,
-        string? String)
-        : ISerializableInstance;
-}
+using System.Collections.Generic;
+using global::MessagePack;
+
+[MessagePackObject(keyAsPropertyName: true)]
+public sealed record SerializableRecord(IEnumerable<ulong>? Array, int? Integer, ISerializableInstance? Object, string? String)
+    : ISerializableInstance;
