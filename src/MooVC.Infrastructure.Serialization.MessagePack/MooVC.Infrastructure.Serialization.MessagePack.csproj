@@ -3,8 +3,8 @@
     <Description>A library designed to encapsulate the MessagePack implementation through the standardized MooVC.Serialization interpretation, facilitating ease of consumption within inner layers without direct coupling to infrastructural concerns.</Description>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="MessagePack" Version="2.*" />
-    <PackageReference Include="MooVC" Version="7.*" />
+    <PackageReference Include="MessagePack" Version="3.0.300" />
+    <PackageReference Include="MooVC" Version="8.0.0" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Resources.Designer.cs">
